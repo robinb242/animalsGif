@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title>Animal Gifs</title>
+	<meta charset="utf-8">
+	<!--Bootswatch Styling-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" src="assets/style.css">
+
+  <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<!-- Javescript will insert buttons from the array here. -->
+<div id="buttonsArea"></div>
+
+<!--Input for user to add a new button -->
+ <form id=search-form"">
+    <label for="search-input">Search For Another Animal</label>
+    <input type="text" id="search-input" placeholder="User Animal"><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+<!--Javascript will insert results
+ of button click GIFs here -->
+ <div id="searches"></div>
+
+<!-- Jquery CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- local Javascript file link-->
+<script type="text/javascript"  src="assets/animals.js"></script>
+
+
+
+</body>
+</html>
