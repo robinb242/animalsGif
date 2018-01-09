@@ -8,15 +8,15 @@ $(function(){
 })
 //create an array of strings save it to a variable called topics.
 	var topicsArray = [
-	"Aardvark",
-	"Bear",
-	"Cat",
-	"Dog",
-	"Elephant",
-	"Horse",
-	"Lion",
-	"Tiger",
-	"Ostrich"
+	'Aardvark',
+	'Bear',
+	'Cat',
+	'Dog',
+	'Elephant',
+	'Horse',
+	'Lion',
+	'Tiger',
+	'Ostrich'
 	];
 
 	function populateButtons(topicsArray,classToAdd, areaToAddTo){
@@ -35,26 +35,23 @@ $(function(){
   	}
    }
 
-
-//assign a variable to user input, doesn't necessarily go here 
-//var arrayItem = $(topicsArray[i]).val().trim();
-
 //When the user clicks the button the page should gather 10 STATIC, NON-ANIMATED Gifs from from the API.
 $(document).on('click', '.searchButton', function(){
-	//('#userInput').empty();
 	var type = $(this).data('type');
+	console.log (type);
 
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q="+type+"&api_key=KmR0wZXokil38TbxyRAbUJFTm94HgMOB&limit=10";
 		console.log(queryURL);
-
+//appends the HTML for each item in the array with the query response data.
 	$.ajax({url:queryURL, method:'GET'})
 	.done(function(response){
+
 		for(var i=0; i<response.data.length; i++){
 			var searchDiv = $('<div class="search-item">');
 			var rating = response.data[i].rating;
 			var p = $("<p>").text('Rating ' + rating);
 			var animated = response.data[i].images.fixed_height.url;
-			var still =  response.data[i].images.fixed_height_still.url;
+		 	var still =  response.data[i].images.fixed_height_still.url;
 			var image = $('<img>');
 			image.attr('src',still);
 			image.attr('data-still', still);
@@ -65,8 +62,10 @@ $(document).on('click', '.searchButton', function(){
 			searchDiv.append(image);
 			$("#searches").append(searchDiv);
 		}
-		})
+		}) 
 	})
+
+//changes the state of the GIF from static to animated and back
 $(document).on('click', '.searchImage', function() {
 		var state = $(this).attr('data-state');
 		if(state == 'still'){
@@ -79,6 +78,7 @@ $(document).on('click', '.searchImage', function() {
 			}
 })
 
+//should append the array with user input...doesn't
 $('#addSearch').on('click',function(){
 	var newSearch = $('input').eq(0).val();
 	topicsArray.push(newSearch);
@@ -87,38 +87,6 @@ $('#addSearch').on('click',function(){
 	return false;
 
 })
-//Display the results of the API Search in HTML
-
-//When the user clicks the still image, the GIF will animate. 2nd click stops animation
-
-//display the GIFs Rating under every gif
-
-//Second part
-//Add a form to your page that take user input and adds it to your array
-//Make a function call that takes each topic in the array and remakes the buttons on the page.
-
-//Example fromm Arnold and Sam Jackson
-/* $('#buttonArea').on('click', function(event){
-
-	event.preventDefault();
-
-	var x = $(this).data("search");
-
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q="+x+"&api_key=KmR0wZXokil38TbxyRAbUJFTm94HgMOB&limit=10";
-		console.log(queryURL);
-
-	$ajax({url:queryURL,method:'GET'})
-		.done(function(response){
-			console.log(response);
-			for(var i=0; i<response.data.length;i++){
-				$('GIFarea').prepend("<p>Rating: "+response.data[i].rating+"</p>");
-				$('GIFarea').prepend("img src='"+response.data[i].images.downsized.url+"'>"); 
-			}
-		})
-//Clear input area of text
-
-		$("#formGroupUserAnimal").val("");
-		*/
 
 
 
